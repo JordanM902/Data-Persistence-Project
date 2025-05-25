@@ -547,7 +547,10 @@ MonoBehaviour:
   LineCount: 6
   Ball: {fileID: 177912862}
   ScoreText: {fileID: 188020406}
+  HighScoreText: {fileID: 2078529056}
   GameOverText: {fileID: 474497238}
+  m_Points: 0
+  m_HighScore: 0
 --- !u!1 &455529321
 GameObject:
   m_ObjectHideFlags: 0
@@ -1963,7 +1966,7 @@ GameObject:
   - component: {fileID: 2078529057}
   - component: {fileID: 2078529056}
   m_Layer: 5
-  m_Name: ScoreText (1)
+  m_Name: HighScoreText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2021,7 +2024,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Best Score : Name : 0'
+  m_Text: 'High Score : Name : 0'
 --- !u!222 &2078529057
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2147,6 +2150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdbc80bbd3f115a40b0479dd0184ffef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerName: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
