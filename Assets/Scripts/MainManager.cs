@@ -41,7 +41,7 @@ public class MainManager : MonoBehaviour
 
         if (gameManager != null)
         {
-            HighScoreText.text = $"High Score : {gameManager.highScore} ({gameManager.playerName})";
+            HighScoreText.text = "High Score : " + gameManager.highScorePlayerName + " " + gameManager.highScore;
         }
     }
 
@@ -76,8 +76,9 @@ public class MainManager : MonoBehaviour
         if (gameManager != null && m_Points > gameManager.highScore)
         {
             gameManager.highScore = m_Points;
+            gameManager.highScorePlayerName = gameManager.playerName;
             gameManager.SaveGame();
-            HighScoreText.text = $"High Score : {gameManager.highScore} ({gameManager.playerName})";
+            HighScoreText.text = $"High Score : {gameManager.highScorePlayerName} {gameManager.highScore}";
         }
     }
 

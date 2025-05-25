@@ -13,7 +13,10 @@ using UnityEditor;
 [DefaultExecutionOrder(1000)]
 public class GameManager : MonoBehaviour
 {
+    private MainManager mainManager;
+
     public string playerName;
+    public string highScorePlayerName;
     public int highScore;
     public TMP_InputField inputField; // Change to InputField
     public TextMeshProUGUI welcomeText;
@@ -25,12 +28,13 @@ public class GameManager : MonoBehaviour
         if (!string.IsNullOrEmpty(playerName))
         {
             welcomeText.text = "Welcome " + playerName + "!";
-            highScoreText.text = "High Score: " + highScore;
+            highScoreText.text = "High Score: " + highScorePlayerName + " - " + highScore;
         }
     }
 
     void Start()
     {
+        mainManager = FindObjectOfType<MainManager>();
         inputField.onEndEdit.AddListener(OnInputEndEdit);
     }
 
@@ -46,6 +50,14 @@ public class GameManager : MonoBehaviour
     {
         playerName = inputField.text;
         welcomeText.text = "Welcome " + playerName + "!";
+        SaveGame();
+    }
+    public void ResetHighScore()
+    {
+        highScore = 0;
+        highScorePlayerName = "None";
+        playerName = null;
+        highScoreText.text = "High Score: " + highScorePlayerName + " - " + highScore;
         SaveGame();
     }
 
@@ -74,6 +86,7 @@ public class GameManager : MonoBehaviour
     {
         public string playerName;
         public int highScore;
+        public string highScorePlayerName;
     }
 
     public void SaveGame()
@@ -81,6 +94,8 @@ public class GameManager : MonoBehaviour
         SaveData data = new SaveData();
         data.playerName = playerName;
         data.highScore = highScore;
+        data.highScorePlayerName = highScorePlayerName;
+        //data.mainManager.highScorePlayerName = mainManager.highScorePlayerName;
         string json = JsonUtility.ToJson(data);
         System.IO.File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
     }
@@ -94,6 +109,7 @@ public class GameManager : MonoBehaviour
             SaveData data = JsonUtility.FromJson<SaveData>(json);
             playerName = data.playerName;
             highScore = data.highScore;
+            highScorePlayerName = data.highScorePlayerName;
         }
     }
 }
